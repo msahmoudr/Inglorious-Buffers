@@ -49,23 +49,6 @@ def partition(arr, low, high):
     arr[high], arr[left_ptr] = arr[left_ptr], arr[high]
     return left_ptr
 
-    #
-    # # Index of smaller element (indicates correct position of pivot so far)
-    # i = low - 1
-    #
-    # for j in range(low, high):
-    #     # If current element is smaller than or equal to pivot
-    #     if arr[j] <= pivot:
-    #         # Increment index of smaller element
-    #         i += 1
-    #         arr[i], arr[j] = arr[j], arr[i]  # Swap
-    #
-    # # Place pivot in its correct position
-    # arr[i + 1], arr[high] = arr[high], arr[i + 1]
-    #
-    # # Return the partition index
-    # return i + 1
-
 
 def sort(arr):
 
