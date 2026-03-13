@@ -29,7 +29,7 @@ def randomized_partition(arr, low, high):
 
 def partition(arr, low, high):
     """
-2 pointers
+2 pointers 4abah el Hoare
     """
 
 
@@ -37,9 +37,9 @@ def partition(arr, low, high):
     left_ptr = low
     right_ptr = high-1
     while(left_ptr <= right_ptr):
-        while left_ptr <= right_ptr and arr[left_ptr] <= pivot:
+        while (left_ptr <= right_ptr and arr[left_ptr] <= pivot):
             left_ptr += 1
-        while left_ptr <= right_ptr and arr[right_ptr] >= pivot:
+        while (left_ptr <= right_ptr and arr[right_ptr] >= pivot):
             right_ptr -= 1
 
         if left_ptr < right_ptr:
