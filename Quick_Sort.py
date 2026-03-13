@@ -42,7 +42,10 @@ def partition(arr, low, high):
             left_ptr = left_ptr + 1
         while(arr[right_ptr]>=pivot  and left_ptr < right_ptr):
             right_ptr = right_ptr - 1
-        
+        arr[left_ptr],arr[right_ptr] = arr[right_ptr],arr[left_ptr]
+
+    arr[high], arr[right_ptr] = arr[right_ptr], arr[high]
+    return left_ptr
 
     #
     # # Index of smaller element (indicates correct position of pivot so far)
