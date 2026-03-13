@@ -1,50 +1,61 @@
-# This is a sample Python script.
+if __name__ == "__main__":
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-import random
-import Quick_Sort
+    headers = [
+        "Array Size",
+        "Bubble V1 (ms)", "Bubble V2 (ms)", "Bubble V3 (ms)", "Bubble V4 Cocktail (ms)",
+        "Selection Standard (ms)", "Selection Bidirectional (ms)", "Selection Stable (ms)",
+        "Insertion V1 (ms)", "Insertion V2 (ms)", "Insertion V3 Binary (ms)", "Insertion V4 Shell (ms)"
+    ]
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    UTILITIES.add_record_to_csv_File(headers)
 
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
-
-def kth_smallest(arr, k):
-    n= len(arr)
-    if k < 1 or k > len(arr):
-        raise ValueError(f"k must be between 1 and {len(arr)}")
-
-    return kth_smallest_helper(arr.copy, 0, n - 1, k)
+    sizes_to_test = [2 ** i for i in range(1, 10)]
 
 
-def kth_smallest_helper(arr, low, high, k):
-    """
-    mix between quick sort partition and binary search
-    """
-    # lw one element
-    if low == high:
-        return arr[low]
+
+    for size in sizes_to_test:
+        print(f"--- Testing Array Size: {size} ---")
 
 
-    # htraga3 index element fe mkano el mazbot
-    pivot_index = Quick_Sort.randomized_partition(arr, low, high)
+        master_array = UTILITIES.generate_random_array(size)
+        print("  Running Bubble Sorts...")
+        _, t_bub1 = SORT.bubble_sort_v1(master_array.copy())
+        _, t_bub2 = SORT.bubble_sort_v2(master_array.copy())
+        _, t_bub3 = SORT.bubble_sort_v3(master_array.copy())
+        _, t_bub4 = SORT.bubble_sort_v4(master_array.copy())
+        print("  Running time for bubble sort v1 is {}".format(t_bub1))
+        print("  Running time for bubble sort v2 is {}".format(t_bub2))
+        print("  Running time for bubble sort v3 is {}".format(t_bub3))
+        print("  Running time for bubble sort v4 is {}".format(t_bub4))
 
-    # Since array is 0-indexed, left size = pivot_index - low + 1
-    left_size = pivot_index - low + 1
+        print("  Running Selection Sorts...")
+        _, t_sel1 = SORT.selection_sort_standard(master_array.copy())
+        _, t_sel2 = SORT.selection_sort_bidirectional(master_array.copy())
+        _, t_sel3 = SORT.selection_sort_stable(master_array.copy())
+        print("  Running time for selection sort standard is {}".format(t_sel1))
+        print("  Running time for selection sort bidirectional is {}".format(t_sel2))
+        print("  Running time for selection sort stable is {}".format(t_sel3))
 
-    if k == left_size:
-        return arr[pivot_index]
-    # nafs fekret el binary search
-    elif k < left_size:
-        return kth_smallest_helper(arr, low, pivot_index - 1, k)
-    else:
-        return kth_smallest_helper(arr, pivot_index + 1, high, k - left_size)
-    
+
+        print("  Running Insertion Sorts...")
+        _, t_ins1 = SORT.insertion_sort_v1(master_array.copy())
+        _, t_ins2 = SORT.insertion_sort_v2(master_array.copy())
+        _, t_ins3 = SORT.insertion_sort_v3(master_array.copy())
+        _, t_ins4 = SORT.insertion_sort_v4(master_array.copy())
+        print("  Running time for insertion sort v1 is {}".format(t_ins1))
+        print("  Running time for insertion sort v2 is {}".format(t_ins2))
+        print("  Running time for insertion sort v3 is {}".format(t_ins3))
+        print("  Running time for insertion sort v4 is {}".format(t_ins4))
+
+
+        row_data = [
+            size,
+            t_bub1, t_bub2, t_bub3, t_bub4,
+            t_sel1, t_sel2, t_sel3,
+            t_ins1, t_ins2, t_ins3, t_ins4
+        ]
+
+
+        UTILITIES.add_record_to_csv_File(row_data)
+        print(f"  -> Finished size {size}. Data saved to CSV.\n")
