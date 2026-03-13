@@ -28,23 +28,22 @@ def randomized_partition(arr, low, high):
 
 
 def partition(arr, low, high):
-    """
-    Standard Lomuto partition scheme.
-    Pivot is the last element (after randomization).
-    """
+
 
 
     pivot = arr[high]
     left_ptr = low
-    right_ptr = high
-    while(left_ptr < right_ptr):
-        while(arr[left_ptr]<=pivot and left_ptr < right_ptr):
+    right_ptr = high-1
+    while(left_ptr <= right_ptr):
+        while(arr[left_ptr]<=pivot and left_ptr <= right_ptr):
             left_ptr = left_ptr + 1
-        while(arr[right_ptr]>=pivot  and left_ptr < right_ptr):
+        while(arr[right_ptr]>=pivot  and left_ptr <= right_ptr):
             right_ptr = right_ptr - 1
-        arr[left_ptr],arr[right_ptr] = arr[right_ptr],arr[left_ptr]
 
-    arr[high], arr[right_ptr] = arr[right_ptr], arr[high]
+        if left_ptr < right_ptr:
+            arr[left_ptr],arr[right_ptr] = arr[right_ptr],arr[left_ptr]
+
+    arr[high], arr[left_ptr] = arr[left_ptr], arr[high]
     return left_ptr
 
     #
