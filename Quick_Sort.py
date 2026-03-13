@@ -5,10 +5,11 @@ import time
 def quick_sort(arr, low, high):
 
     if low < high:
-        # Get the partition index (pivot's final position)
+
         pivot_index = randomized_partition(arr, low, high)
 
-        # Recursively sort elements before and after partition
+
+
         quick_sort(arr, low, pivot_index - 1)
         quick_sort(arr, pivot_index + 1, high)
 
@@ -28,7 +29,9 @@ def randomized_partition(arr, low, high):
 
 
 def partition(arr, low, high):
-
+    """
+2 pointers
+    """
 
 
     pivot = arr[high]
