@@ -6,7 +6,7 @@ def kth_smallest(arr, k):
     if k < 1 or k > len(arr):
         raise ValueError(f"k must be between 1 and {len(arr)}")
 
-    return kth_smallest_helper(arr.copy, 0, n - 1, k)
+    return kth_smallest_helper(arr.copy(), 0, n - 1, k)
 
 
 def kth_smallest_helper(arr, low, high, k):

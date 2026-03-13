@@ -22,13 +22,13 @@ class hybrid_merge_sort:
             size = right - left + 1
 
             if size <= threshold:
-                MERGE_SORT._selection_sort(arr, left, right)
+                hybrid_merge_sort._selection_sort(arr, left, right)
                 return arr
 
             mid = (left + right) // 2
 
-            MERGE_SORT.hybrid_merge_sort(arr, left, mid, threshold)
-            MERGE_SORT.hybrid_merge_sort(arr, mid + 1, right, threshold)
+            hybrid_merge_sort.hybrid_merge_sort(arr, left, mid, threshold)
+            hybrid_merge_sort.hybrid_merge_sort(arr, mid + 1, right, threshold)
 
             MERGE_SORT._merge(arr, left, mid, right)
 

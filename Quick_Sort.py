@@ -38,10 +38,10 @@ def partition(arr, low, high):
     left_ptr = low
     right_ptr = high-1
     while(left_ptr <= right_ptr):
-        while(arr[left_ptr]<=pivot and left_ptr <= right_ptr):
-            left_ptr = left_ptr + 1
-        while(arr[right_ptr]>=pivot  and left_ptr <= right_ptr):
-            right_ptr = right_ptr - 1
+        while left_ptr <= right_ptr and arr[left_ptr] <= pivot:
+            left_ptr += 1
+        while left_ptr <= right_ptr and arr[right_ptr] >= pivot:
+            right_ptr -= 1
 
         if left_ptr < right_ptr:
             arr[left_ptr],arr[right_ptr] = arr[right_ptr],arr[left_ptr]
