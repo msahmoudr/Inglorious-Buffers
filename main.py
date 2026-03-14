@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     UTILITIES.add_record_to_csv_File(headers)
 
-    sizes_to_test = [2 ** i for i in range(1, 18)]
+    sizes_to_test = [2 ** i for i in range(1, 10)]
 
     for size in sizes_to_test:
         print(f"--- Testing Array Size: {size} ---")
